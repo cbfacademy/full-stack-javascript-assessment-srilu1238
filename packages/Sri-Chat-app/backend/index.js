@@ -3,16 +3,20 @@ const { chats } = require("./data/data");  //connecting to static data in "data"
 
 const helmet = require("helmet");
 const cors = require("cors");
-//const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const connectDB = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require('./errorhandler/errorHandler');
 
 require("dotenv").config();
+connectDB();
 const app = express();
 
-app.use(helmet());
-app.use(cors());
-app.use(express.json());
+//app.use(helmet());
+//app.use(cors());
+app.use(express.json());  //to accept JSON data
 
-/*const uri = process.env.MONGO_URI; // Add your connection string from Atlas to your .env file. See https://docs.atlas.mongodb.com/getting-started/
+const uri = process.env.MONGO_URI; // Add your connection string from Atlas to your .env file. See https://docs.atlas.mongodb.com/getting-started/
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -22,28 +26,24 @@ const client = new MongoClient(uri, {
 });
 
 client.connect((err) => {
+  MongoClient
   if (err) {
     console.error("Error connecting to MongoDB", err);
     return;
   }
   console.log("Connected to MongoDB");
   client.close();
-});*/
+});
 
 app.get(`/`, (req, res) => {
   res.send("API is running");
 });
 
-app.get(`/api/chat`, (req, res) => {
-  res.send(chats);
-});
 
-app.get(`/api/chat/:id`, (req, res) => {
-  console.log(req.params.id);
-  const chatID = chats.find((c) => c._id === req.params.id);
-  res.send(chatID);
+app.use('/api/user', userRoutes);
 
-});
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

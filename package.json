@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/cbfacademy/full-stack-javascript/issues"
   },
-  "homepage": "https://github.com/cbfacademy/full-stack-javascript#readme"
+  "homepage": "https://github.com/cbfacademy/full-stack-javascript#readme",
+  "dependencies": {
+    "mongoose": "^8.0.3"
+  }
 }

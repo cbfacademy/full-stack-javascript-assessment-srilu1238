@@ -1,17 +1,29 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-const uerSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     pic: {
-        type: String, required: true, default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-7.jpg"
+        type: String, default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-7.jpg"
     },
 
 },
     { timestamps: true }
 );
 
+userSchema.methods.verifyPassword = async function (enterPassword) {
+    return await bcrypt.compare(enterPassword, this.password);
+};
+
+userSchema.pre('save', async function (next) {   //Encrypting password using bcryptjs dependencies.
+    if (!this.isModified) {
+        next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+})
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

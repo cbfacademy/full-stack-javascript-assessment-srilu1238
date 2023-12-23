@@ -21,14 +21,14 @@ const Register = () => {
         <FormControl id='email' isRequired>
             <FormLabel>Email</FormLabel>
 
-            <Input placeholder='Email'
+            <Input id='emailid' placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)} />
         </FormControl>
 
         <FormControl id='password' isRequired>
             <FormLabel>Password</FormLabel>
 
-            <InputGroup>
+            <InputGroup id='pwd'>
                 <Input
                     type={show ? "text" : "password"}
                     placeholder='Password'
@@ -41,10 +41,10 @@ const Register = () => {
             </InputGroup>
         </FormControl>
 
-        <FormControl id='password' isRequired>
+        <FormControl id='confirmpassword' isRequired>
             <FormLabel>Confirm Password</FormLabel>
 
-            <InputGroup size="md">
+            <InputGroup size="md" id='cpwd'>
                 <Input
                     type={show ? "text" : "password"}
                     placeholder='Confirm Password'
@@ -67,7 +67,7 @@ const Register = () => {
             />
         </FormControl>
 
-        <Button
+        <Button id='register_button'
             colorScheme='blue'
             width='50%'
             style={{ marginTop: 15 }}

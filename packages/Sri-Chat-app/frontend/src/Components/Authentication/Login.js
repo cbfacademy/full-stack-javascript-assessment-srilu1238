@@ -23,8 +23,8 @@ const Login = () => {
         <FormControl id='password' isRequired>
             <FormLabel>Password</FormLabel>
 
-            <InputGroup>
-                <Input
+            <InputGroup >
+                <Input id='l_pwd'
                     type={show ? "text" : "password"}
                     placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)} />
