@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/cbfacademy/full-stack-javascript#readme",
   "dependencies": {
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "nodemon": "^3.0.2"
   }
 }

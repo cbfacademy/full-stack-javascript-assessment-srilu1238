@@ -1,6 +1,7 @@
-import { Button, FormControl, FormHelperText, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormHelperText, FormLabel, Input, InputGroup, InputRightElement, VStack, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
-
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 const Register = () => {
     const [show, setShow] = useState(false);
     const [name, setName] = useState();
@@ -8,20 +9,126 @@ const Register = () => {
     const [password, setPassword] = useState();
     const [confirmpassword, setConfirmPassword] = useState();
     const [pic, setPic] = useState();
+    const [loading, setLoading] = useState(false);
+    const toast = useToast();
+    const history = useHistory();
     const handleClick = () => setShow(!show);
-    const postDetails = (pics) => { };
-    const submitHandler = () => { };
-    return <VStack spacing='5px'  >
+
+    const postDetails = (pics) => {
+        setLoading(true);
+        if (pics === undefined) {
+            toast({
+                title: "Please Select an image",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            return;
+        }
+
+        if (pics.type === "image/jpeg" || pics.type === "image/png") {
+            const data = new FormData();
+            data.append("file", pics);
+            data.append("upload_preset", "sri-chat-app") //sri-chat-app is the name given in cloudinary for image upload
+            data.append("cloud_name", "sri-chat");
+            fetch("https://api.cloudinary.com/v1_1/sri-chat/image/upload", {
+                method: "post",
+                body: data,
+            })
+                .then((res) =>
+                    res.json()
+                )
+
+                .then((data) => {
+                    setPic(data.url.toString());
+                    setLoading(false);
+                    console.log(data.url.toString());
+                }
+                )
+                .catch((err) => {
+                    console.log(err);
+                    setLoading(false);
+                });
+        } else {
+            toast({
+                title: "Please select an Image",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setLoading(false);
+            return;
+        }
+    };
+    const submitHandler = async () => {
+        setLoading(true);
+        if (!name || !email || !password || !confirmpassword) {
+            toast({
+                title: "Please enter the fields",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setLoading(false);
+            return;
+        }
+        if (password !== confirmpassword) {
+            toast({
+                title: "Passwords do not match",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setLoading(false);
+            return;
+        }
+        try {
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                },
+            };
+            const { data } = await axios.post("/api/user", { name, email, password, pic }, config
+            );
+            toast({
+                title: "Succefully registered",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            localStorage.setItem('userInfo', JSON.stringify(data));
+            setLoading(false);
+            history.push("/chats");
+
+        } catch (error) {
+            toast({
+                title: "Error Error!",
+                description: error.response.data.message,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setLoading(false);
+        }
+    };
+
+    return (<VStack spacing='5px'  >
         <FormControl id='full-name' isRequired>
             <FormLabel>FullName</FormLabel>
             <Input placeholder='FullName'
                 onChange={(e) => setName(e.target.value)} />
         </FormControl>
 
-        <FormControl id='email' isRequired>
-            <FormLabel>Email</FormLabel>
+        <FormControl id='e_mail' isRequired>
+            <FormLabel htmlFor='emailid' >Email ID</FormLabel>
 
-            <Input id='emailid' placeholder='Email'
+            <Input id='emailid' placeholder='Email' autoComplete="off" type='email'
                 onChange={(e) => setEmail(e.target.value)} />
         </FormControl>
 
@@ -57,9 +164,10 @@ const Register = () => {
             </InputGroup>
         </FormControl>
 
-        <FormControl id="pic">
-            <FormLabel>Upload you Picture</FormLabel>
-            <Input
+        <FormControl >
+            <FormLabel htmlFor='input_pic'>Upload you Picture</FormLabel>
+            <Input id='input_pic'
+                name='input_pic'
                 type='file'
                 p={1.5}
                 accept='image/*'
@@ -72,10 +180,11 @@ const Register = () => {
             width='50%'
             style={{ marginTop: 15 }}
             onClick={submitHandler}
+            isLoading={loading}
 
         >Register</Button>
 
-    </VStack>
+    </VStack>)
 }
 
 export default Register;
