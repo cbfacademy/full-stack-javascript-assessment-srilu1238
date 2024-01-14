@@ -1,6 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const generateToken = require("../config/generateToken");
+
+
+//Registering User
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body;
 
@@ -10,14 +13,14 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("Please Enter all the Fields");
     }
 
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email }); //Checking the user if already exists in DB.
 
     if (userExists) {
         res.status(400);
         throw new Error("User already exists");
     }
 
-    const user = await User.create({
+    const user = await User.create({        //If not exists Creating th eUser
         name,
         email,
         password,
@@ -54,7 +57,7 @@ const authUser = asyncHandler(async (req, res) => {
 });
 //  /api/user?search=sri
 const allUsers = asyncHandler(async (req, res) => {
-    const keyword = req.query.search ? {
+    const keyword = req.query.search ? {   //to pass the queries from API
         $or: [
             { name: { $regex: req.query.search, $options: "i" } },
             { email: { $regex: req.query.search, $options: "i" } },

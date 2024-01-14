@@ -14,7 +14,7 @@ const Register = () => {
     const history = useHistory();
     const handleClick = () => setShow(!show);
 
-    const postDetails = (pics) => {
+    const postDetails = (pics) => {      //Pic uploading
         setLoading(true);
         if (pics === undefined) {
             toast({

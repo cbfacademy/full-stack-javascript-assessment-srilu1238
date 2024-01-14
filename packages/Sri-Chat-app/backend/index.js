@@ -44,8 +44,8 @@ app.get(`/`, (req, res) => {
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound);   //not found 
+app.use(errorHandler); // Error Handling.
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
