@@ -1,10 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
     const [user, setUser] = useState();
+    const [selectedChat, setSelectedChat] = useState();
+    const [chats, setChats] = useState();
     const history = useHistory();
 
     useEffect(() => {
@@ -12,17 +14,20 @@ const ChatProvider = ({ children }) => {
         setUser(userInfo);
 
         if (!userInfo) {
-            history.push('/')
+            console.log(history);
+            history.push('/');
         }
 
     }, [history]);
 
-    return (<ChatContext.Provider value={{ user, setUser }}>
+    return (<ChatContext.Provider
+        value={{ selectedChat, setSelectedChat, user, setUser, chats, setChats, }}>
         {children}
     </ChatContext.Provider>);
 };
 export const ChatState = () => {
+    console.log(ChatContext);
     return useContext(ChatContext);
-}
+};
 
 export default ChatProvider;

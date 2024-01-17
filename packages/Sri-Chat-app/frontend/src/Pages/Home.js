@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, Box, Text, Tab, TabList, TabPanel, TabPanels, Tabs, Center } from "@chakra-ui/react";
 import Register from '../Components/Authentication/Register';
 import Login from '../Components/Authentication/Login';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 const Home = () => {
     const history = useHistory();
 
