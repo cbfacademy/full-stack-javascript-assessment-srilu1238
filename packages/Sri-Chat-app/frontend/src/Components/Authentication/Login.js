@@ -43,6 +43,7 @@ const Login = () => {
                 position: "bottom",
             });
             localStorage.setItem('userInfo', JSON.stringify(data));
+
             setLoading(false);
             history.push("/chats");
 
@@ -102,7 +103,7 @@ const Login = () => {
             width='50%'
             style={{ marginTop: 15 }}
             onClick={() => {
-                setEmail("guest@example.com");
+                setEmail("guestuser@example.com");
                 setPassword("123456");
             }}
 
