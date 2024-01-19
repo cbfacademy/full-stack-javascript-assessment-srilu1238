@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 
-const ChatContext = createContext();
+export const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
     const [user, setUser] = useState();
@@ -12,9 +12,9 @@ const ChatProvider = ({ children }) => {
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem("userInfo"));
         setUser(userInfo);
-        console.log(userInfo);
+        //console.log(userInfo);
         if (!userInfo) {
-            console.log(history);
+            // console.log(history);
             history.push('/');
         }
 
@@ -23,12 +23,12 @@ const ChatProvider = ({ children }) => {
 
 
     return (<ChatContext.Provider
-        value={{ selectedChat, setSelectedChat, user, setUser, chats, setChats, }}>
+        value={{ selectedChat, setSelectedChat, user, setUser, chats, setChats }}>
         {children}
     </ChatContext.Provider>);
 };
 export const ChatState = () => {
-    console.log(ChatContext);
+    //console.log(ChatContext);
     return useContext(ChatContext);
 };
 

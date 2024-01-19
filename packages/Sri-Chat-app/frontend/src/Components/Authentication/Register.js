@@ -62,6 +62,9 @@ const Register = () => {
             return;
         }
     };
+
+    //Registration Submit Handler functionality
+
     const submitHandler = async () => {
         setLoading(true);
         if (!name || !email || !password || !confirmpassword) {

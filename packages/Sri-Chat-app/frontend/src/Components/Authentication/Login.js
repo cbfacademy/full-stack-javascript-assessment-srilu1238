@@ -2,6 +2,7 @@ import { Button, FormControl, FormHelperText, FormLabel, Input, InputGroup, Inpu
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { ChatState } from '../../Context/ChatProvider';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -12,7 +13,9 @@ const Login = () => {
     const toast = useToast();
     const history = useHistory();
     const handleClick = () => setShow(!show);
+    const { setUser } = ChatState();
 
+    //Login Submit functionality
     const submitHandler = async () => {
         setLoading(true);
         if (!email || !password) {
@@ -42,6 +45,8 @@ const Login = () => {
                 isClosable: true,
                 position: "bottom",
             });
+
+            setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
 
             setLoading(false);

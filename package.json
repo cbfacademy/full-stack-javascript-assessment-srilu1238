@@ -7,7 +7,6 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start:frontend": "cd packages/frontend && npm start",
     "start:backend": "cd packages/backend && npm start",
     "install:all": "npm install && cd packages/frontend && npm install && cd ../backend && npm install"
@@ -25,6 +24,7 @@
   "homepage": "https://github.com/cbfacademy/full-stack-javascript#readme",
   "dependencies": {
     "mongoose": "^8.0.3",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "socket.io": "^4.7.4"
   }
 }

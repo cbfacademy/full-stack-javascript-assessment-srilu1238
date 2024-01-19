@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, D
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import React, { useState } from 'react';
 import { ChatState } from '../../Context/ChatProvider';
-import ProfileModal from './ProfieModal';
+import ProfileModal from './ProfileModal';
 import { useHistory } from 'react-router-dom';
 import ChatLoading from '../ChatLoading';
 import axios from 'axios';
