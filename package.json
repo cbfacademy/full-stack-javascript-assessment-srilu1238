@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "start:frontend": "cd packages/frontend && npm start",
-    "start:backend": "cd packages/backend && npm start",
+    "start:frontend": "cd packages/Sri-Chat-app/frontend && npm start",
+    "start:backend": "cd packages/Sri-Chat-app/backend && npm start",
     "install:all": "npm install && cd packages/frontend && npm install && cd ../backend && npm install"
   },
   "repository": {
