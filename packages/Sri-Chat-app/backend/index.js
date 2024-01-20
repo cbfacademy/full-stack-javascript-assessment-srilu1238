@@ -47,7 +47,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);
 
 
-/*
+/*----Deployment--------
 
 const path = require("path");
 app.use(express.static(path.join(--dirname, "build")));
@@ -68,7 +68,8 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 50000,
   cors: {
-    origin: "http://localhost:3000",
+    //origin: "http://localhost:3000",
+    origin: "https://sri-chat-app-fronted.onrender.com",
   },
 });
 
