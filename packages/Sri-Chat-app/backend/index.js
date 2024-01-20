@@ -37,9 +37,6 @@ client.connect((err) => {
   client.close();
 });
 
-app.get(`/`, (req, res) => {
-  res.send("API is running");
-});
 
 
 app.use('/api/user', userRoutes);
@@ -50,11 +47,19 @@ app.use('/api/message', messageRoutes);
 /*----Deployment--------*/
 const path = require("path");
 const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "build")));
 
-app.use(express.static(path.join(__dirname1, "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "build", "index.html"));
+  });
+}
 
-//const __dirname1 = path.resolve()
-
+else {
+  app.get("/", (req, res) => {
+    res.send("API is Running Successfully")
+  });
+}
 app.use(notFound);   //not found 
 app.use(errorHandler); // Error Handling.
 
@@ -69,7 +74,8 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 50000,
   cors: {
-    origin: "http://localhost:3000",
+    //origin: "http://localhost:3000",
+    origin: "https://sri-chat-app-1v2h.onrender.com",
   },
 });
 
