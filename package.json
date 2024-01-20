@@ -7,9 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "start:frontend": "cd packages/Sri-Chat-app/frontend && npm start",
-    "start:backend": "cd packages/Sri-Chat-app/backend && npm start",
-    "install:all": "npm install && cd packages/Sri-Chat-app/frontend && npm install && cd ../backend && npm install"
+    "start:frontend": "cd ./packages/Sri-Chat-app/frontend && npm start",
+    "start:backend": "cd ./packages/Sri-Chat-app/backend && npm start",
+    "install:all": "npm install && cd packages/Sri-Chat-app/frontend && npm install && cd /packages/Sri-Chat-app/backend && npm install"
   },
   "repository": {
     "type": "git",
