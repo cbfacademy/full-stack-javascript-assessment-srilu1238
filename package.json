@@ -2,8 +2,8 @@
   "name": "full-stack-javascript",
   "version": "1.0.0",
   "private": true,
-  "description": "",
   "main": "./packages/Sri-Chat-app/backend/index.js",
+  "description": "",
   "directories": {
     "doc": "docs"
   },
