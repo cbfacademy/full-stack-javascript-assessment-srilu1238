@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": " nodemon index.js",
-    "build": "npm install ",
+    "build": "npm install && npm install cd /packages/Sri-Chat-app/frontend && npm run build /packages/Sri-Chat-app/frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
