@@ -10,13 +10,17 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const path = require("path");
+const PORT = process.env.PORT || 5000;
 
 require("dotenv").config();
 connectDB();
 const app = express();
 
+const http = require('http').Server(app);
+//const cors = require('cors');
+
 //app.use(helmet());
-//app.use(cors());
+app.use(cors());
 app.use(express.json());  //to accept JSON data
 
 const uri = process.env.MONGO_URI; // Add your connection string from Atlas to your .env file. See https://docs.atlas.mongodb.com/getting-started/
@@ -43,51 +47,52 @@ client.connect((err) => {
 });*/
 
 
-app.use('api/user', userRoutes);
-app.use('api/chat', chatRoutes);
-app.use('api/message', messageRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/message', messageRoutes);
 
-
-/*----Deployment--------*/
-
-const __dirname1 = path.resolve();
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "/frontend/build")));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1,"frontend", "build", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running..");
-  });
-}
-;
-
-//const __dirname1 = path.resolve()
-
-app.use(notFound);   //not found 
-app.use(errorHandler); // Error Handling.
-
-const PORT = process.env.PORT || 5000;
-
+//socket.io server-client connection.
 const server = app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
-
-//socket.io server-client connection.
-
 const io = require("socket.io")(server, {
   pingTimeout: 50000,
   cors: {
-    //origin: "http://localhost:3000",
-    origin: "https://sri-chat-app-fronted.onrender.com",
+    origin: "http://localhost:3000",
+    // origin: "https://sri-chat-app-fronted.onrender.com",
   },
 });
 
 io.on("connection", (socket) => {
   console.log("connected to socket.io");
+
+
+  /*----Deployment--------*/
+
+  const __dirname1 = path.resolve();
+
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+    app.get("*", (req, res) =>
+      res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+    );
+  } else {
+    app.get("/api", (req, res) => {
+      res.send("API is running successfully..");
+    });
+  }
+  ;
+
+
+  /*------------------*/
+  app.use(notFound);   //not found 
+  app.use(errorHandler); // Error Handling.
+
+
+
+
+
 
   //creating socket to send data from frontend to the chat .
   socket.on('setup', (userData) => {
