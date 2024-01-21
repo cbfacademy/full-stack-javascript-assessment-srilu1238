@@ -47,9 +47,9 @@ app.get(`/`, (req, res) => {
 });
 
 
-app.use('/api/user', userRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/message', messageRoutes);
+app.use('/api/user', require("./routes/userRoutes"));
+app.use('/api/chat', require("./routes/chatRoutes"));
+app.use('/api/message', require("./routes/messageRoutes"));
 
 //socket.io server-client connection.
 const server = app.listen(PORT, () => {
