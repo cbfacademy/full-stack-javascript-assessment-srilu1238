@@ -42,9 +42,9 @@ client.connect((err) => {
   client.close();
 });
 
-/*app.get(`/`, (req, res) => {
+app.get(`/`, (req, res) => {
   res.send("API is running");
-});*/
+});
 
 
 app.use('/api/user', userRoutes);
@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
 
   /*----Deployment--------*/
 
-  const __dirname1 = path.resolve();
+  /*const __dirname1 = path.resolve();
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname1, "/frontend", "/build")));
@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
       res.send("API is running successfully..");
     });
   }
-  ;
+  ;*/
 
 
   /*------------------*/
