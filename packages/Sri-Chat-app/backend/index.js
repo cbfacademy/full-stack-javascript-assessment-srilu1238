@@ -43,9 +43,9 @@ client.connect((err) => {
 });*/
 
 
-app.use('/api/user', userRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/message', messageRoutes);
+app.use('api/user', userRoutes);
+app.use('api/chat', chatRoutes);
+app.use('api/message', messageRoutes);
 
 
 /*----Deployment--------*/
