@@ -8,8 +8,8 @@ import ChatLoading from '../ChatLoading';
 import axios from 'axios';
 import UserListItem from '../UserComponents/UserListItem';
 import { getSender } from '../config/ChatLogic';
-import { Effect } from "react-notification-badge";
-import NotificationBadge from "react-notification-badge/lib/components/NotificationBadge";
+//import { Effect } from "react-notification-badge";
+//import NotificationBadge from "react-notification-badge/lib/components/NotificationBadge";
 const SideDrawer = () => {
     const [search, setSearch] = useState("")
     const [searchResult, setSearchResult] = useState([])
@@ -111,10 +111,10 @@ const SideDrawer = () => {
                 <div>
                     <Menu>
                         <MenuButton p={1}>
-                            <NotificationBadge
+                            { /* <NotificationBadge
                                 count={notification.length}
                                 effect={Effect.SCALE}
-                            />
+                             />*/}
                             <BellIcon fontSize="2xl" m={1} />
                         </MenuButton>
                         <MenuList pl={2}>

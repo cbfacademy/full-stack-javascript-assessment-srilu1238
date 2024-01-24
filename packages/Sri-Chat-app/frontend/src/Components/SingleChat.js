@@ -110,7 +110,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket.on("message recieved", (newMessageRecieved) => {
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-                //notification
+                /*---notification-------*/
                 if (!notification.includes(newMessageRecieved)) {
                     setNotification([newMessageRecieved, ...notification]);
                     setFetchAgain(!fetchAgain);
@@ -174,7 +174,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         borderRadius="lg"
                         overflowY="hidden"
                     >
-                        {/*Messages here */}
+                        {/*---Messages here----- */}
 
                         {loading ? (<Spinner
                             size="xl"
