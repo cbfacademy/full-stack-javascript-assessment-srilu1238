@@ -43,9 +43,9 @@ client.connect((err) => {
   client.close();
 });
 
-/*app.get(`/`, (req, res) => {
+app.get(`/`, (req, res) => {
   res.send("API is running Successfully");
-});*/
+});
 
 
 app.use('ENDPOINT/api/user', require("./routes/userRoutes"));
@@ -70,20 +70,20 @@ io.on("connection", (socket) => {
 
   /*----Deployment--------*/
 
-  const __dirname1 = path.resolve();
-
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname1, "https://sri-chat-app-frontend-static.onrender.com")));
-
-    app.get("*", (req, res) =>
-      res.sendFile(path.resolve(__dirname1, `https://sri-chat-app-frontend-static.onrender.com/build/index.html`))
-    );
-  } else {
-    app.get("/api", (req, res) => {
-      res.send("API is running successfully..");
-    });
-  }
-  ;
+  /* const __dirname1 = path.resolve();
+ 
+   if (process.env.NODE_ENV === "production") {
+     app.use(express.static(path.join(__dirname1, "https://sri-chat-app-frontend-static.onrender.com")));
+ 
+     app.get("*", (req, res) =>
+       res.sendFile(path.resolve(__dirname1, `https://sri-chat-app-frontend-static.onrender.com/build/index.html`))
+     );
+   } else {
+     app.get("https://sri-chat-app-frontend-static.onrender.com/api", (req, res) => {
+       res.send("API is running successfully..");
+     });
+   }
+   ;*/
 
 
   /*------------------*/
