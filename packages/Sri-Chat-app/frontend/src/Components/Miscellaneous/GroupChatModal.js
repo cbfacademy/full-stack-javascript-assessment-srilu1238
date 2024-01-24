@@ -16,6 +16,7 @@ const GroupChatModal = ({ children }) => {
     const toast = useToast();
 
     const { user, chats, setChats } = ChatState();
+    const ENDPOINT = process.env.REACT_APP_API_URL;
 
     /*Searching users functionality for Group*/
     const handleSearch = async (query) => {
@@ -31,7 +32,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const { data } = await axios.get(`/api/user?search=${search}`, config);
+            const { data } = await axios.get(`${ENDPOINT}/api/user?search=${search}`, config);
             //console.log(data);
             setLoading(false);
             setSearchResult(data);
@@ -63,7 +64,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const { data } = await axios.post("/api/chat/group",
+            const { data } = await axios.post(`${ENDPOINT}/api/chat/group`,
                 {
                     name: groupChatName,
                     users: JSON.stringify(selectedUsers.map((u) => u._id)),

@@ -13,6 +13,7 @@ const Register = () => {
     const toast = useToast();
     const history = useHistory();
     const handleClick = () => setShow(!show);
+    const ENDPOINT = process.env.REACT_APP_API_URL;
 
     const postDetails = (pics) => {      //Pic uploading
         setLoading(true);
@@ -95,7 +96,7 @@ const Register = () => {
                     "Content-type": "application/json",
                 },
             };
-            const { data } = await axios.post("/api/user", { name, email, password, pic }, config
+            const { data } = await axios.post(`${ENDPOINT}/api/user`, { name, email, password, pic }, config
             );
             toast({
                 title: "Succefully registered",

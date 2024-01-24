@@ -17,6 +17,7 @@ const SideDrawer = () => {
     const { user, setSelectedChat, chats, setChats } = ChatState();
     const history = useHistory();
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const ENDPOINT = process.env.REACT_APP_API_URL;
 
     const logoutHandler = () => {                //Logout Functionality
         localStorage.removeItem("userInfo");
@@ -43,7 +44,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const { data } = await axios.get(`/api/user?search=${search}`, config)
+            const { data } = await axios.get(`${ENDPOINT}/api/user?search=${search}`, config)
 
             setLoading(false);
             setSearchResult(data);
@@ -68,7 +69,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const { data } = await axios.post("/api/chat", { userId }, config);
+            const { data } = await axios.post(`${ENDPOINT}/api/chat`, { userId }, config);
 
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
             setSelectedChat(data);
