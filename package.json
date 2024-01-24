@@ -7,10 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    
-    "start": "cd packages/Sri-Chat-app/backend && npm start",
-    "install:all": "npm install && cd ../frontend && npm install && cd ../backend && npm install"
+    "start": " cd ./packages/Sri-Chat-app/backend && node ./packages/Sri-Chat-app/backend/index.js",
+    "build": "npm i && cd ./packages/Sri-Chat-app/frontend && npm i && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

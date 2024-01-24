@@ -14,8 +14,14 @@
     "axios": "^1.6.2",
     "framer-motion": "^10.16.16",
     "history": "^4.10.1",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+=======
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-notification-badge": "^1.5.1",
+>>>>>>> 2511b3a52c261fcb5b6fd16d57b5fadadcc06018
     "react-router-dom": "^5.3.4",
     "react-scripts": "^3.0.1",
     "react-scrollable-feed": "^2.0.1",
