@@ -11,6 +11,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const path = require("path");
 const PORT = process.env.PORT || 5000;
+const ENDPOINT = process.env.REACT_APP_API_URL;
 
 require("dotenv").config();
 connectDB();
@@ -59,7 +60,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 50000,
   cors: {
     //origin: "http://localhost:3000",
-    origin: "https://sri-chat-app-fronted.onrender.com",
+    origin: "https://sri-chat-app-frontend-static.onrender.com",
   },
 });
 
