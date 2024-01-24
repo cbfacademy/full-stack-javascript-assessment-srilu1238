@@ -115,7 +115,7 @@ const SideDrawer = () => {
                                 count={notification.length}
                                 effect={Effect.SCALE}
                              />*/}
-                            if(!(notification.length)=== 0){
+                            if((notification.length)!== 0){
                                 <span className="e-badge e-badge-danger e-badge-overlap e-badge-notification"
                                     overlap="circular"
                                     badgeContent={4}
