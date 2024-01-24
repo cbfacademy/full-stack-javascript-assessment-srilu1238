@@ -9,7 +9,7 @@ import "./Styles/Styles.css";
 import ScrollableChat from './ScrollableChat';
 import io from "socket.io-client";
 
-const ENDPOINT = import.meta.env.REACT_APP_API_URL//"https://sri-chat-app-1v2h.onrender.com";
+const ENDPOINT = process.env.REACT_APP_API_URL//"https://sri-chat-app-1v2h.onrender.com";
 var socket, selectedChatCompare;
 
 

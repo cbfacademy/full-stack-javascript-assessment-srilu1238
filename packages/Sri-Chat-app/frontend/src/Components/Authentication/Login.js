@@ -36,7 +36,8 @@ const Login = () => {
                     "Content-type": "application/json",
                 },
             };
-            const { data } = await axios.post("/api/user/login", { email, password }, config
+            const ENDPOINT = process.env.REACT_APP_API_URL;
+            const { data } = await axios.post(`${ENDPOINT}/api/user/login`, { email, password }, config
             );
             toast({
                 title: "Login successfull",
