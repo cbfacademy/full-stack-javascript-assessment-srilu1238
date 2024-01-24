@@ -115,6 +115,7 @@ const SideDrawer = () => {
                                 count={notification.length}
                                 effect={Effect.SCALE}
                              />*/}
+                            <span className="e-badge e-badge-danger e-badge-overlap e-badge-notification">{notification.length}</span>
                             <BellIcon fontSize="2xl" m={1} />
                         </MenuButton>
                         <MenuList pl={2}>
