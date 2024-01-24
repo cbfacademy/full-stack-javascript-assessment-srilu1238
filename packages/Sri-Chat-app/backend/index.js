@@ -42,9 +42,9 @@ client.connect((err) => {
   client.close();
 });
 
-app.get(`/`, (req, res) => {
+/*app.get(`/`, (req, res) => {
   res.send("API is running Successfully");
-});
+});*/
 
 
 app.use('/api/user', require("./routes/userRoutes"));
