@@ -21,7 +21,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [loading, setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState();
     const toast = useToast();
-    const { user, selectedChat, setSelectedChat } = ChatState();
+    const { user, selectedChat, setSelectedChat, notification, setNotification } = ChatState();
     const [socketConnected, setSocketConnected] = useState(false);
     const ENDPOINT = process.env.REACT_APP_API_URL;
 
@@ -68,7 +68,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare = selectedChat;
     }, [selectedChat]);
 
-
+    console.log(notification, "TEsting notification .........");
     //Sending Messages fuctionality.
     const sendMessage = async (event) => {
         if (event.key === "Enter" && newMessage) {
@@ -110,7 +110,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket.on("message recieved", (newMessageRecieved) => {
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-                //give notification
+                //notification
+                if (!notification.includes(newMessageRecieved)) {
+                    setNotification([newMessageRecieved, ...notification]);
+                    setFetchAgain(!fetchAgain);
+                }
+
             }
             else {
                 setMessages([...messages, newMessageRecieved])
