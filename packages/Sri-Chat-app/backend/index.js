@@ -48,9 +48,9 @@ app.get(`/`, (req, res) => {
 });
 
 
-app.use('ENDPOINT/api/user', require("./routes/userRoutes"));
-app.use('ENDPOINT/api/chat', require("./routes/chatRoutes"));
-app.use('ENDPOINT/api/message', require("./routes/messageRoutes"));
+app.use(`${ENDPOINT}/api/user`, require("./routes/userRoutes"));
+app.use(`${ENDPOINT}/api/chat`, require("./routes/chatRoutes"));
+app.use(`${ENDPOINT}/api/message`, require("./routes/messageRoutes"));
 
 //socket.io server-client connection.
 const server = app.listen(PORT, () => {
