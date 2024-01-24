@@ -76,7 +76,7 @@ io.on("connection", (socket) => {
     app.use(express.static(path.join(__dirname1, "/frontend", "/build")));
 
     app.get("*", (req, res) =>
-      res.sendFile(path.resolve(__dirname1, "build", "index.html"))
+      res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
     );
   } else {
     app.get("/api", (req, res) => {
