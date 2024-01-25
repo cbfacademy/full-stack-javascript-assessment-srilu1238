@@ -143,11 +143,11 @@ const SideDrawer = () => {
                             <Avatar size="sm" cursor="pointer" name={user.name} src={user.pic} />
                         </MenuButton>
                         <MenuList>
-                            <MenuItem onClick={<ProfileModal user={user} />}>My Profile</MenuItem>
-                            {/*
+                            {/*<MenuItem onClick={<ProfileModal user={user} />}>My Profile</MenuItem>*/}
+
                             <ProfileModal user={user}>
                                 <MenuItem>My Profile</MenuItem>
-                            </ProfileModal>*/}
+                            </ProfileModal>
                             <MenuDivider />
                             <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                         </MenuList>
