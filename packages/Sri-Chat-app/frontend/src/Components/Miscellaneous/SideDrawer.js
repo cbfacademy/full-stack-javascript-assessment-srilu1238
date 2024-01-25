@@ -115,17 +115,15 @@ const SideDrawer = () => {
                                 count={notification.length}
                                 effect={Effect.SCALE}
                              />*/}
+                            <span className="e-badge e-badge-danger e-badge-overlap e-badge-notification"
+                                color="red"
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "left"
+                                }}>{notification.length}</span>
+                            <BellIcon fontSize="2xl" m={1} />
 
-                            <BellIcon fontSize="2xl" m={1} >
-                                <span className="e-badge e-badge-danger e-badge-overlap e-badge-notification"
-                                    overlap="circular"
-                                    badgeContent={4}
-                                    color="success"
-                                    anchorOrigin={{
-                                        vertical: "top",
-                                        horizontal: "left"
-                                    }}>{notification.length}</span>
-                            </BellIcon>
+
                         </MenuButton>
                         <MenuList pl={2}>
                             {!notification.length && "No new Messages"}
