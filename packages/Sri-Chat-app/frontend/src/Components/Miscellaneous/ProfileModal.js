@@ -10,7 +10,7 @@ const ProfileModal = ({ user, children }) => {
   return (
     <>
       {
-        children ? (<span onClick={onOpen}>{children}</span>) : (<Button d={{ base: "flex" }} onClick={onOpen} > My Profile</Button>
+        children ? (<span onClick={onOpen}>{children}</span>) : (<span d={{ base: "flex" }} onClick={onOpen} > My Profile</span>
           /*<
           <IconButton
             d={{ base: "flex" }}
