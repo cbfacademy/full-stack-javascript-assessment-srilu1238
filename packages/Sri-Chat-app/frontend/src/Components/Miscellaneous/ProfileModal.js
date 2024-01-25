@@ -10,11 +10,12 @@ const ProfileModal = ({ user, children }) => {
   return (
     <>
       {
-        children ? (<span onClick={onOpen}>{children}</span>) : (
+        children ? (<span onClick={onOpen}>{children}</span>) : (<Button d={{ base: "flex" }} onClick={onOpen} />
+          /*<
           <IconButton
             d={{ base: "flex" }}
             icon={<ViewIcon />}
-            onClick={onOpen} />
+        onClick={onOpen} />*/
         )
       }
       <Modal size="lg" isOpen={isOpen} onClose={onClose} isCentered>
